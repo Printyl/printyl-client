@@ -1,11 +1,12 @@
-import { useState } from 'react'
 import { type Server } from './models/Server';
-import { storeServer } from './Storage';
+import { storeServer } from './storage/Storage';
 
+type SettingsProps = {
+    setServer: (server: Server[]) => void;
+    server: Server[];
+};
 
-export default function Settings() {
-
-    const [server, setServer] = useState<Server[]>([{ name: '', url: '', port: 8080 }])
+export default function Settings({ setServer, server }: SettingsProps) {
 
     return (
         <main>

@@ -1,4 +1,4 @@
-import { type Server } from './models/Server';
+import { type Server } from '../models/Server';
 
 export function getServer() {
     const server: Server[] = []
