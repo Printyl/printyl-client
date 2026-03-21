@@ -1,12 +1,14 @@
 export type TemplateField = {
-    type: 'string';
+    name: string;
+    description: string;
     length: number;
     multiline: boolean;
+    type: string;
 };
 
 export interface Template {
     id: string;
     name: string;
     description: string;
-    fields?: Record<string, TemplateField>;
+    fields?: TemplateField[];
 }

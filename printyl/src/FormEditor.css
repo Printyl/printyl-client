@@ -1,0 +1,196 @@
+.form-editor {
+    --editor-bg: linear-gradient(135deg, #f8fbff 0%, #f3f7f4 45%, #fffdf8 100%);
+    --editor-card: rgba(255, 255, 255, 0.82);
+    --editor-border: #dce5e8;
+    --editor-text: #15303b;
+    --editor-muted: #5f7077;
+    --editor-focus: #127a61;
+    --editor-focus-shadow: rgba(18, 122, 97, 0.16);
+    --editor-surface: #ffffff;
+    --editor-surface-border: #e4ebee;
+    --editor-input-bg: #fcfefd;
+    --editor-shadow: 0 20px 50px rgba(23, 39, 53, 0.08);
+    --editor-submit-border: #0f6f57;
+    --editor-submit-bg: linear-gradient(135deg, #127a61 0%, #1f8f7f 100%);
+    --editor-submit-shadow: 0 8px 18px rgba(18, 122, 97, 0.24);
+    --editor-submit-shadow-hover: 0 10px 20px rgba(18, 122, 97, 0.3);
+
+    width: min(100%, 980px);
+    margin: 0 auto;
+    padding: clamp(1rem, 1.4vw + 0.8rem, 2rem);
+    text-align: left;
+    font-family: 'Avenir Next', 'Manrope', 'IBM Plex Sans', 'Segoe UI', sans-serif;
+    color: var(--editor-text);
+    background: var(--editor-bg);
+}
+
+.form-editor__hero {
+    margin-bottom: 1.2rem;
+}
+
+.form-editor__eyebrow {
+    margin: 0 0 0.35rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--editor-muted);
+}
+
+.form-editor__title {
+    margin: 0;
+    font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+    line-height: 1.1;
+    color: var(--editor-text);
+}
+
+.form-editor__description {
+    margin: 0.7rem 0 0;
+    max-width: 70ch;
+    color: var(--editor-muted);
+}
+
+.form-editor__form {
+    border: 1px solid var(--editor-border);
+    border-radius: 20px;
+    background: var(--editor-card);
+    backdrop-filter: blur(6px);
+    box-shadow: var(--editor-shadow);
+    padding: clamp(1rem, 1.2vw + 0.8rem, 1.6rem);
+}
+
+.form-editor__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.form-editor__field-card {
+    background: var(--editor-surface);
+    border: 1px solid var(--editor-surface-border);
+    border-radius: 14px;
+    padding: 0.8rem;
+}
+
+.form-editor__field-card--full {
+    grid-column: 1 / -1;
+}
+
+.form-editor__label {
+    display: inline-block;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.form-editor__hint {
+    margin: 0 0 0.6rem;
+    font-size: 0.9rem;
+    color: var(--editor-muted);
+}
+
+.form-editor__input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccdade;
+    border-radius: 10px;
+    padding: 0.65rem 0.75rem;
+    font: inherit;
+    color: var(--editor-text);
+    background: var(--editor-input-bg);
+    transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.form-editor__input:focus-visible {
+    outline: none;
+    border-color: var(--editor-focus);
+    box-shadow: 0 0 0 4px var(--editor-focus-shadow);
+    background: var(--editor-surface);
+}
+
+.form-editor__input--multiline {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-editor__counter {
+    margin: 0.45rem 0 0;
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--editor-muted);
+}
+
+.form-editor__actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-editor__submit {
+    border: 1px solid var(--editor-submit-border);
+    border-radius: 999px;
+    padding: 0.6rem 1.2rem;
+    font: inherit;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    background: var(--editor-submit-bg);
+    cursor: pointer;
+    box-shadow: var(--editor-submit-shadow);
+    transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+
+.form-editor__submit:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--editor-submit-shadow-hover);
+    filter: saturate(1.06);
+}
+
+.form-editor__submit:active {
+    transform: translateY(0);
+}
+
+@media (prefers-color-scheme: dark) {
+    .form-editor {
+        --editor-bg: linear-gradient(145deg, #111820 0%, #0f1b19 45%, #1a1711 100%);
+        --editor-card: rgba(17, 24, 32, 0.86);
+        --editor-border: #2a3742;
+        --editor-text: #e6eef3;
+        --editor-muted: #9fb0bb;
+        --editor-focus: #2ab792;
+        --editor-focus-shadow: rgba(42, 183, 146, 0.24);
+        --editor-surface: #15212b;
+        --editor-surface-border: #2b3a45;
+        --editor-input-bg: #111b23;
+        --editor-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+        --editor-submit-border: #239878;
+        --editor-submit-bg: linear-gradient(135deg, #1c8b6f 0%, #247867 100%);
+        --editor-submit-shadow: 0 8px 18px rgba(24, 122, 97, 0.35);
+        --editor-submit-shadow-hover: 0 10px 20px rgba(24, 122, 97, 0.45);
+    }
+
+    .form-editor__input {
+        border-color: #344651;
+    }
+}
+
+@media (max-width: 760px) {
+    .form-editor {
+        padding: 0.8rem;
+    }
+
+    .form-editor__fields {
+        grid-template-columns: 1fr;
+    }
+
+    .form-editor__field-card--full {
+        grid-column: auto;
+    }
+
+    .form-editor__actions {
+        justify-content: stretch;
+    }
+
+    .form-editor__submit {
+        width: 100%;
+    }
+}

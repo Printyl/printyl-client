@@ -1,15 +1,33 @@
 import { type Server } from './models/Server';
-import { storeServer } from './storage/Storage';
+import { clearServer, storeServer } from './storage/Storage';
 
 type SettingsProps = {
     setServer: (server: Server[]) => void;
     server: Server[];
+    onBack: () => void;
 };
 
-export default function Settings({ setServer, server }: SettingsProps) {
+export default function Settings({ setServer, server, onBack }: SettingsProps) {
 
     return (
-        <main>
+        <main style={{ position: 'relative' }}>
+            <button
+                type="button"
+                onClick={onBack}
+                aria-label="Open settings"
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    border: 'none',
+                    background: 'transparent',
+                    padding: 0,
+                    cursor: 'pointer'
+                }}
+            >
+                Back
+            </button>
+
             <h1>Printyl</h1>
             <h2>Configure your settings</h2>
             <div>
@@ -75,6 +93,14 @@ export default function Settings({ setServer, server }: SettingsProps) {
                     window.location.reload();
                 }
             }>Save Settings</button>
+            <div>TODO: add divider here</div>
+            <button onClick={() => {
+                if (window.confirm('Are you sure you want to clear all settings?')) {
+                    clearServer();
+                    setServer([{ name: '', url: '', port: 8080 }]);
+                    window.location.reload();
+                }
+            }}>Clear Settings</button>
         </main>
     )
 }

@@ -1,0 +1,99 @@
+.template-widget {
+    --tw-card: rgba(255, 255, 255, 0.82);
+    --tw-border: #dce5e8;
+    --tw-text: #16303a;
+    --tw-muted: #5e7078;
+    --tw-chip-bg: #edf5f2;
+    --tw-chip-text: #246e5e;
+    --tw-shadow: 0 12px 28px rgba(23, 39, 53, 0.09);
+    --tw-focus: #127a61;
+
+    width: 100%;
+    text-align: left;
+    border: 1px solid var(--tw-border);
+    background: var(--tw-card);
+    border-radius: 16px;
+    padding: 0.95rem;
+    color: var(--tw-text);
+    cursor: pointer;
+    box-shadow: var(--tw-shadow);
+    transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.template-widget:hover {
+    transform: translateY(-2px);
+    border-color: #b9d4cc;
+    box-shadow: 0 16px 30px rgba(23, 39, 53, 0.12);
+}
+
+.template-widget:focus-visible {
+    outline: none;
+    border-color: var(--tw-focus);
+    box-shadow: 0 0 0 4px rgba(18, 122, 97, 0.22);
+}
+
+.template-widget__eyebrow {
+    margin: 0;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--tw-muted);
+}
+
+.template-widget__title {
+    margin: 0.28rem 0 0;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    color: var(--tw-text);
+}
+
+.template-widget__description {
+    margin: 0.55rem 0 0;
+    color: var(--tw-muted);
+    font-size: 0.94rem;
+    line-height: 1.35;
+}
+
+.template-widget__meta {
+    margin-top: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+}
+
+.template-widget__badge {
+    border-radius: 999px;
+    padding: 0.28rem 0.6rem;
+    background: var(--tw-chip-bg);
+    color: var(--tw-chip-text);
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.template-widget__cta {
+    font-size: 0.82rem;
+    color: var(--tw-muted);
+}
+
+@media (prefers-color-scheme: dark) {
+    .template-widget {
+        --tw-card: rgba(21, 33, 43, 0.82);
+        --tw-border: #2b3a45;
+        --tw-text: #e6eef3;
+        --tw-muted: #9fb0bb;
+        --tw-chip-bg: #18332f;
+        --tw-chip-text: #89d9c5;
+        --tw-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+        --tw-focus: #2ab792;
+    }
+
+    .template-widget:hover {
+        border-color: #36515d;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .template-widget:focus-visible {
+        box-shadow: 0 0 0 4px rgba(42, 183, 146, 0.25);
+    }
+}

@@ -7,6 +7,7 @@ import FormEditor from './FormEditor';
 import { type Server } from './models/Server';
 import { getServer } from './storage/Storage';
 import type { Template } from './models/Template';
+import { getTemplateForm } from './server_communication/ServerCommunication';
 
 // This workaround is followint the --erassableSyntaxOnly flag introduction in typescript, which makes enums unusable
 const Pages = {
@@ -24,23 +25,39 @@ export default function App() {
     configured ? Pages.Home : Pages.Settings
   );
 
-  const [server, setServer] = useState<Server[]>(getServer());
+  const serverFromLoad: Server[] = getServer();
+  const [server, setServer] = useState<Server[]>(
+    serverFromLoad.length > 0 ? serverFromLoad : [{ name: '', url: '', port: 8080 }]
+  );
 
   const [selectedTemplate, setSelectedTemplate] = useState<Template>();
+
+  const handleTemplateSelect = (template: Template) => {
+    getTemplateForm(template.id, server[0].url, server[0].port).then((fields) => {
+      template.fields = fields;
+      setSelectedTemplate(template);
+      setCurrentPage(Pages.FormEditor);
+    }).catch((error) => {
+      console.error(`Error fetching template form: ${error}`);
+    });
+  }
 
   switch (currentPage) {
     case Pages.Home:
       return <Home
         onOpenSettings={() => setCurrentPage(Pages.Settings)}
         server={server}
-        setSelectedTemplate={setSelectedTemplate}
+        setSelectedTemplate={handleTemplateSelect}
       />;
     case Pages.Settings:
       return <Settings
         setServer={setServer}
         server={server}
+        onBack={() => setCurrentPage(Pages.Home)}
       />;
     case Pages.FormEditor:
+      console.log("Selected template:")
+      console.log(selectedTemplate)
       return <FormEditor
         template={selectedTemplate!}
       />;

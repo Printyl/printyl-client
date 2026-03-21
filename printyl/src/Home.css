@@ -1,0 +1,99 @@
+.home {
+    --home-text: #15303b;
+    --home-muted: #5f7077;
+
+    width: min(100%, 980px);
+    margin: 0 auto;
+    padding: clamp(1rem, 1.4vw + 0.8rem, 2rem);
+    text-align: left;
+    position: relative;
+    font-family: 'Avenir Next', 'Manrope', 'IBM Plex Sans', 'Segoe UI', sans-serif;
+}
+
+.home__settings {
+    position: absolute;
+    top: 1.15rem;
+    right: 1.15rem;
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: 999px;
+    padding: 0.25rem;
+    cursor: pointer;
+    transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.home__settings:hover {
+    background: rgba(18, 122, 97, 0.09);
+    border-color: rgba(18, 122, 97, 0.26);
+}
+
+.home__settings:focus-visible {
+    outline: none;
+    border-color: rgba(18, 122, 97, 0.65);
+    box-shadow: 0 0 0 4px rgba(18, 122, 97, 0.16);
+}
+
+.home__hero {
+    margin-bottom: 1.1rem;
+    padding-right: 3rem;
+}
+
+.home__title {
+    margin: 0;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    line-height: 1.05;
+    color: var(--home-text);
+}
+
+.home__subtitle {
+    margin: 0.45rem 0 0;
+    color: var(--home-muted);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    font-weight: 500;
+}
+
+.home__templates {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .home {
+        --home-text: #e6eef3;
+        --home-muted: #9fb0bb;
+    }
+
+    .home__settings img {
+        filter: invert(1) brightness(1.6);
+    }
+
+    .home__settings:hover {
+        background: rgba(42, 183, 146, 0.12);
+        border-color: rgba(42, 183, 146, 0.28);
+    }
+
+    .home__settings:focus-visible {
+        border-color: rgba(42, 183, 146, 0.65);
+        box-shadow: 0 0 0 4px rgba(42, 183, 146, 0.2);
+    }
+}
+
+@media (max-width: 760px) {
+    .home {
+        padding: 0.8rem;
+    }
+
+    .home__settings {
+        top: 0.85rem;
+        right: 0.85rem;
+    }
+
+    .home__hero {
+        padding-right: 2.4rem;
+    }
+
+    .home__templates {
+        grid-template-columns: 1fr;
+    }
+}
