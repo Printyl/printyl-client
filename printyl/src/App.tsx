@@ -60,6 +60,7 @@ export default function App() {
       console.log(selectedTemplate)
       return <FormEditor
         template={selectedTemplate!}
+        server={server}
       />;
     default:
       return <ErrorView />;

@@ -4,7 +4,7 @@ const documentsPath = 'documents'
 
 export async function getTemplates(currentUrl: string, port: number): Promise<Template[]> {
     const headers = new Headers();
-    headers.append('Origin', 'http://localhost:5173');
+    headers.append('Origin', currentUrl);
     headers.append('Content-Type', 'application/json');
     const request = new Request(`${currentUrl}:${port}/api/v1/${documentsPath}`, {
         method: 'GET',
@@ -29,7 +29,7 @@ export async function getTemplateForm(id: string, currentUrl: string, port: numb
         method: 'GET',
         mode: 'cors',
         headers: {
-            'Origin': 'http://localhost:5173',
+            'Origin': currentUrl,
             'Content-Type': 'application/json'
         }
     });
@@ -43,4 +43,29 @@ export async function getTemplateForm(id: string, currentUrl: string, port: numb
         type: field.type
     }));
     return fields;
+}
+
+interface SubmitTemplateForm {
+    name: string;
+    value: string;
+}
+
+export async function submitTemplateForm(templateId: string, fields: TemplateField[], currentUrl: string, port: number): Promise<void> {
+    const body : SubmitTemplateForm[] = [];
+    for (const field of fields) {
+        body.push({
+            name: field.name,
+            value: field.value ?? ''
+        });
+    }
+    const request = new Request(`${currentUrl}:${port}/api/v1/${documentsPath}/${templateId}/generate`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Origin': currentUrl,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+    await fetch(request);
 }

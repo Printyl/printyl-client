@@ -7,8 +7,6 @@ type TemplateWidgetProps = {
 };
 
 export default function TemplateWidget({ template, onSelect }: TemplateWidgetProps) {
-    const fieldCount = template.fields?.length;
-
     return (
         <button
             type="button"
@@ -20,9 +18,6 @@ export default function TemplateWidget({ template, onSelect }: TemplateWidgetPro
             <h3 className="template-widget__title">{template.name}</h3>
             <p className="template-widget__description">{template.description}</p>
             <div className="template-widget__meta">
-                <span className="template-widget__badge">
-                    {fieldCount ?? 0} fields
-                </span>
                 <span className="template-widget__cta">Open editor</span>
             </div>
         </button>

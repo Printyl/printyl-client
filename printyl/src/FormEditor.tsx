@@ -1,12 +1,15 @@
-import { useMemo, useState, type FormEvent } from 'react';
+import { useMemo, useState, type SubmitEvent } from 'react';
 import { type Template } from './models/Template';
 import './FormEditor.css';
+import { submitTemplateForm } from './server_communication/ServerCommunication';
+import { type Server } from './models/Server';
 
 type FormEditorProps = {
     template: Template;
+    server: Server[];
 };
 
-export default function FormEditor({ template }: FormEditorProps) {
+export default function FormEditor({ template, server }: FormEditorProps) {
     const fields = useMemo(() => template.fields ?? [], [template.fields]);
     const [values, setValues] = useState<Record<string, string>>({});
 
@@ -17,8 +20,12 @@ export default function FormEditor({ template }: FormEditorProps) {
         }));
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
         event.preventDefault();
+        submitTemplateForm(template.id, fields.map((field, index) => ({
+            ...field,
+            value: values[`field-${index}`] ?? ''
+        })), server[0].url, server[0].port);
     };
 
     return (

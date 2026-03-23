@@ -4,6 +4,7 @@ export type TemplateField = {
     length: number;
     multiline: boolean;
     type: string;
+    value?: string;
 };
 
 export interface Template {
